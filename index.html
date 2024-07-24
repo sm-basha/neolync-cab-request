@@ -15,7 +15,7 @@
     <div class="container mt-5">
         <div class="mainform">
             <h2>NeoLync Cab Request Form</h2>
-            <form action="https://formsubmit.co/el/gixuyi" method="POST">
+            <form action="#">
                 <div class="form-group">
                     <label for="fullName">Full Name *</label>
                     <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
@@ -117,24 +117,31 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-
-
     <script>
-        const form = document.querySelector('form');
+        const form = document.querySelector("form");
         function sendEmail() {
             Email.send({
                 Host: "smtp.elasticemail.com",
                 Username: "siva.adm@neolync.com",
                 Password: "93CF46E125BBE4D8CE0E2909D957F7134789",
-                To: 'them@website.com',
-                From: "you@isp.com",
+                To: 'siva.adm@neolync.com',
+                From: "siva.adm@neolync.com",
                 Subject: "This is the subject",
                 Body: "And this is the body"
             }).then(
                 message => alert(message)
             );
         }
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            sendEmail();
+        });
     </script>
+
+
+
 
 
 
