@@ -104,10 +104,12 @@
                 <div class="">
                     <div class="input-block textarea">
                         <label for="">Any instructions?</label>
-                        <textarea rows="2" type="text" class="form-control"></textarea>
+                        <textarea rows="2" type="text" class="form-control" id="msg"></textarea>
                     </div>
                 </div>
+
                 <button type="submit" class="btn btn-secondary btn-lg btn-block">Submit</button>
+
             </form>
         </div>
     </div>
@@ -117,19 +119,44 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <script>
         const form = document.querySelector("form");
+        const fullName = document.getElementById("fullName");
+        const empId = document.getElementById("empId");
+        const emailId = document.getElementById("emailId");
+        const phone = document.getElementById("phone");
+        const pickupDate = document.getElementById("pickupDate");
+        const pickupLocation = document.getElementById("pickupLocation");
+        const dropLocation = document.getElementById("dropLocation");
+        const pickupTimings = document.getElementById("pickupTimings");
+        const subject = document.getElementById("subject");
+        const msg = document.getElementById("msg");
+
+
         function sendEmail() {
+            const bodymsg = 'Full Name: ${fullName.value}<br> Employee ID: ${empId.value} <br> Email ID: ${emailId} <br> Phone Number: ${phone}<br> Pickup Date: ${pickupDate}<br> Pickup Location: ${pickupLocation}<br>Drop Location: ${dropLocation}<br> Pickup Timings: ${pickupTimings}<br> Subject: ${subject}<br> Instructions: ${msg}';
+
             Email.send({
                 Host: "smtp.elasticemail.com",
                 Username: "siva.adm@neolync.com",
                 Password: "93CF46E125BBE4D8CE0E2909D957F7134789",
                 To: 'siva.adm@neolync.com',
                 From: "siva.adm@neolync.com",
-                Subject: "This is the subject",
-                Body: "And this is the body"
+                Subject: "Cab request of " +document.getElementById("fullName").value + " for " + document.getElementById("pickupDate").value + document.getElementById("pickupTimings").value,
+                Body: bodymsg
             }).then(
-                message => alert(message)
+                message => {
+                    if (message == "OK") {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Your request has been sent",
+                            icon: "success"
+                        });
+                    }
+                }
             );
         }
 
