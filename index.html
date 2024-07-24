@@ -145,11 +145,11 @@
                 Password: "93CF46E125BBE4D8CE0E2909D957F7134789",
                 To: 'siva.adm@neolync.com',
                 From: "siva.adm@neolync.com",
-                Subject: "Cab request of " +document.getElementById("fullName").value + " for " + document.getElementById("pickupDate").value + document.getElementById("pickupTimings").value,
+                Subject: "Cab request of " + document.getElementById("fullName").value + " for " + document.getElementById("pickupDate").value + document.getElementById("pickupTimings").value,
                 Body: bodymsg
             }).then(
                 message => {
-                    if (message == "OK") {
+                    if (message == "Mailbox name not allowed. The server response was: Envelope FROM 'siva.adm@neolync.com' email address not allowed.") {
                         Swal.fire({
                             title: "Success!",
                             text: "Your request has been sent",
