@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cab Request Form</title>
+    <title>NL - Cab Request Form</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
- 
+
 </head>
+
 <body>
     <div class="container mt-5">
         <div class="mainform">
             <h2>NeoLync Cab Request Form</h2>
-            <form onsubmit="sendEmail(); reset(); return false;">
+            <form action="https://formsubmit.co/el/gixuyi" method="POST">
                 <div class="form-group">
                     <label for="fullName">Full Name *</label>
                     <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
@@ -26,6 +28,12 @@
                     <label for="emailId">Email ID *</label>
                     <input type="email" class="form-control" id="emailId" placeholder="Enter your email ID" required>
                 </div>
+                <div class="form-group">
+                    <label for="emailId">Phone number *</label>
+                    <input type="tel" class="form-control" maxlength="10" pattern="[6-9]{1}[0-9]{9}" id="phone"
+                        placeholder="Enter your phone number" required>
+
+                </div>
                 <!-- <div class="form-group">
                     <label for="serviceRequest">Service Requesting For</label>
                     <select class="form-control" id="serviceRequest" required>
@@ -35,37 +43,35 @@
                     </select>
                 </div> -->
                 <div class="form-group">
-                    <label for="pickupDate">Pickup Date</label>
+                    <label for="pickupDate">Pickup Date *</label>
                     <input type="date" class="form-control" id="pickupDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="pickupLocation">Pickup Location</label>
-                    <select class="form-control" id="pickupLocation" required>
-                        <option value="" disabled selected>Select pickup location</option>
-                        <option value="hyderabad">Hyderabad Office</option>
+                    <label for="pickupLocation">Pickup Location *</label>
+                    <select class="form-control" id="dropLocation" required>
+                        <option value="" disabled selected>pickup location</option>
                         <option value="tirupati">Tirupati Office</option>
+                        <option value="tirupati">Tirupati Airport</option>
+                        <option value="tirupati">Tirupati Raiway Station</option>
                         <option value="sricity">Sricity Office</option>
-                        <option value="noida">Noida Office</option>
-                        <option value="tirupati_airport">Tirupati Airport</option>
-                        <option value="hyderabad_airport">Hyderabad Airport</option>
-                        <option value="delhi_airport">Delhi Airport</option>
+                        <option value="tirupati">Chennai Airport</option>
+                        <option value="tirupati">Chennai Railway Station</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="dropLocation">Drop Location</label>
+                    <label for="dropLocation">Drop Location *</label>
                     <select class="form-control" id="dropLocation" required>
                         <option value="" disabled selected>Select drop location</option>
-                        <option value="hyderabad">Hyderabad Office</option>
                         <option value="tirupati">Tirupati Office</option>
+                        <option value="tirupati">Tirupati Airport</option>
+                        <option value="tirupati">Tirupati Raiway Station</option>
                         <option value="sricity">Sricity Office</option>
-                        <option value="noida">Noida Office</option>
-                        <option value="tirupati_airport">Tirupati Airport</option>
-                        <option value="hyderabad_airport">Hyderabad Airport</option>
-                        <option value="delhi_airport">Delhi Airport</option>
+                        <option value="tirupati">Chennai Airport</option>
+                        <option value="tirupati">Chennai Railway Station</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="pickupTimings">Pickup Timings</label>
+                    <label for="pickupTimings">Pickup Timings *</label>
                     <select class="form-control" id="pickupTimings" required>
                         <option value="" disabled selected>Select pickup timing</option>
                         <!-- Assuming 24-hour format in 1-hour intervals -->
@@ -95,6 +101,12 @@
                         <option value="23:00">23:00</option>
                     </select>
                 </div>
+                <div class="">
+                    <div class="input-block textarea">
+                        <label for="">Any instructions?</label>
+                        <textarea rows="2" type="text" class="form-control"></textarea>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-secondary btn-lg btn-block">Submit</button>
             </form>
         </div>
@@ -105,28 +117,27 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script>
-      function sendEmail(){
-              Email.send({
-                  Host : "smtp.gmail.com",
-                  Username : "itgurusm@gmail.com",
-                  Password : "9502720548",
-                  To : 'smbasharock007@gmail.com',
-                  From : document.getElementById("email").value,
-                  Subject : "New Cab/Flight request for",
-                  Body : "Full Name: " + document.getElementById("fullName").value
-                        + "<br> Employee ID: " + document.getElementById("empId").value
-                        + "<br> Email ID: " + document.getElementById("emailId").value
-                        + "<br> Service Requesting For: " + document.getElementById("serviceRequest").value
-                        + "<br> Pickup Date: " + document.getElementById("pickupDate").value
-                        + "<br> Pickup Location: " + document.getElementById("pickupLocation").value
-                        + "<br> Drop Location: " + document.getElementById("dropLocation").value
-                        + "<br> Pickup Timings: " + document.getElementById("pickupTimings").value
 
-              }).then(
-                message => alert("Thanks for the request. Our team will get back to you shortly.")
-              );
-      }
+
+    <script>
+        const form = document.querySelector('form');
+        function sendEmail() {
+            Email.send({
+                Host: "smtp.elasticemail.com",
+                Username: "siva.adm@neolync.com",
+                Password: "93CF46E125BBE4D8CE0E2909D957F7134789",
+                To: 'them@website.com',
+                From: "you@isp.com",
+                Subject: "This is the subject",
+                Body: "And this is the body"
+            }).then(
+                message => alert(message)
+            );
+        }
     </script>
+
+
+
 </body>
+
 </html>
